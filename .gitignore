@@ -1,0 +1,30 @@
+# ---- Terraform ----
+**/.terraform/*
+.terraform.lock.hcl
+
+# State files - NEVER commit (contain secrets in plaintext)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+crash.log
+crash.*.log
+
+# Variable files - may contain tokens/secrets
+*.tfvars
+*.tfvars.json
+!example.tfvars
+
+# CLI config / plan artifacts
+.terraformrc
+terraform.rc
+*.tfplan
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+*.swp
