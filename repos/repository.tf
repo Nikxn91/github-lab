@@ -30,7 +30,7 @@ resource "github_repository_file" "tf_github_lab_app_repository_codeowners" {
   branch     = "main"
   file       = ".github/CODEOWNERS"
 
-  content = "* @${local.github_owner}/${data.terraform_remote_state.base.outputs.security_manager_team_slug}\n"
+  content = "* @${local.github_owner}/${local.security_team_slug}\n"
 
   commit_message      = "chore: add CODEOWNERS managed by terraform"
   commit_author       = "Terraform"

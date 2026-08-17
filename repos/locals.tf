@@ -7,4 +7,10 @@ locals {
     "security-team" = "push"
     "devops-team"   = "pull"
   }
+
+  # Derive security team slug from live organization team discovery
+  security_team_slug = one([
+    for t in data.github_organization_teams.organization_teams.teams :
+    t.slug if t.name == "security-team" || t.slug == "security-team"
+  ])
 }
