@@ -24,8 +24,3 @@ output "secret_names" {
     github_actions_organization_secret.password.secret_name,
   ])
 }
-
-output "base_repository_name" {
-  description = "Name of the DevOps team repository"
-  value       = github_repository.tf_github_lab_base_repository.name
-}

@@ -27,7 +27,7 @@ resource "github_team_repository" "tf_github_lab_app_repository" {
 
 resource "github_repository_file" "tf_github_lab_app_repository_codeowners" {
   repository = github_repository.tf_github_lab_app_repository.name
-  branch     = github_repository.tf_github_lab_app_repository.default_branch
+  branch     = "main"
   file       = ".github/CODEOWNERS"
 
   content = "* @${local.github_owner}/${data.terraform_remote_state.base.outputs.security_manager_team_slug}\n"
