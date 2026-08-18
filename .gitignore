@@ -28,3 +28,6 @@ override.tf.json
 .idea/
 .DS_Store
 *.swp
+
+# Non-secret membership data used by advanced Task 14
+!base/github-team-membership.auto.tfvars
