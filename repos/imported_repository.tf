@@ -1,8 +1,11 @@
-resource "github_repository" "tf_github_lab_spa_repository" {
+module "spa" {
+  source = "./modules/repository"
+
   name        = "tf-lab-spa"
   description = "TF GitHub lab repository for SPA app"
+  visibility  = "public"
 
-  visibility           = "public"
+  auto_init            = false
   vulnerability_alerts = true
 
   has_issues   = true
@@ -13,4 +16,9 @@ resource "github_repository" "tf_github_lab_spa_repository" {
   allow_merge_commit     = true
   allow_rebase_merge     = true
   delete_branch_on_merge = true
+
+  team_permissions          = {}
+  protected_branches        = []
+  organization_secret_names = []
+  repository_secrets        = {}
 }

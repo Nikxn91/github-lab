@@ -1,8 +1,11 @@
-resource "github_repository" "tf_github_lab_app_repository" {
+module "app" {
+  source = "./modules/repository"
+
   name        = "tf-lab-app"
   description = "TF GitHub lab repository for nodejs app"
+  visibility  = "public"
 
-  visibility           = "public"
+  auto_init            = true
   vulnerability_alerts = true
 
   has_issues   = true
@@ -14,19 +17,15 @@ resource "github_repository" "tf_github_lab_app_repository" {
   allow_rebase_merge     = true
   delete_branch_on_merge = true
 
-  auto_init = true
-}
+  team_permissions = local.app_repository_team_permissions
 
-resource "github_team_repository" "tf_github_lab_app_repository" {
-  for_each = local.app_repository_team_permissions
-
-  team_id    = each.key
-  repository = github_repository.tf_github_lab_app_repository.name
-  permission = each.value
+  protected_branches        = []
+  organization_secret_names = ["USERNAME", "PASSWORD"]
+  repository_secrets        = {}
 }
 
 resource "github_repository_file" "tf_github_lab_app_repository_codeowners" {
-  repository = github_repository.tf_github_lab_app_repository.name
+  repository = module.app.name
   branch     = "main"
   file       = ".github/CODEOWNERS"
 
